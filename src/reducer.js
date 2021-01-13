@@ -6,7 +6,15 @@ import * as actions from './actions'
 function reducer(state, action){
     console.log({state, action})
     if(action.type === actions.decrease){
-      return {...state, count: state.count-1 }
+        let tempCart = state.cart.map(cartItem => {
+            if (cartItem.id === action.payload.id) {
+              cartItem = { ...cartItem, amount: cartItem.amount - 1 };
+            }
+            return cartItem;
+          });
+      
+          return { ...state, cart: tempCart };
+        
     }
   
     if(action.type === actions.increase){
@@ -17,7 +25,6 @@ function reducer(state, action){
             return i
         })
 
-        console.log(tempCart)
       return {...state, cart:tempCart }
     }
     if(action.type === actions.clearcart){
