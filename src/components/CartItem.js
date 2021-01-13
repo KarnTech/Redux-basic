@@ -1,8 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import * as actions from '../actions'
-
-const CartItem = ({ img, title, price, amount, remove, increase, decrease }) => {
+import {useEffect} from 'react'
+const CartItem = ({ img, title, price, amount, remove, increase, decrease, gettotals }) => {
+  
+  
+  
   return (
     <div className="cart-item">
       <img src={img} alt={title} />
@@ -36,8 +39,8 @@ const CartItem = ({ img, title, price, amount, remove, increase, decrease }) => 
 const mapDispatchToProps = (dispatch, ownProps) =>{
   return {remove: () => dispatch({type: actions.remove, payload: {id:ownProps.id}}),
   increase: () => dispatch({type: actions.increase, payload: {id:ownProps.id}}),
-  decrease: () => dispatch({type: actions.decrease, payload: {id:ownProps.id}})
-
+  decrease: () => dispatch({type: actions.decrease, payload: {id:ownProps.id}}),
+  gettotals: ()  => dispatch({type: actions.gettotals})
   }
 }
 

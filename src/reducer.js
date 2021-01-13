@@ -9,7 +9,7 @@ function reducer(state, action){
 
         let tempCart  = []
 
-        if(action.payload.amount  = 1){
+        if(action.payload.amount  === 1){
             tempCart =  state.cart.filter((item) => item.id !== action.payload.id)
         } else
         { tempCart = state.cart.map(cartItem => {
@@ -38,6 +38,19 @@ function reducer(state, action){
     }
     if(action.type === actions.remove){
         return {...state, cart: state.cart.filter((cartitem)  => cartitem.id !== action.payload.id )}
+    }
+
+    if(action.type === actions.gettotals){
+        let {total, amount}  = state.cart.reduce((cartTotal, cartItem) => {
+            console.log(cartItem)
+            const {price, amount} = cartItem;
+            const itemTotal  =  price * amount
+            cartTotal.amount  += amount;
+            cartTotal.total  += itemTotal
+            return cartTotal
+        }, {total:0, amount:0})
+        total  =  parseFloat(total.toFixed(2))
+        return {...state, total, amount}
     }
   
   
