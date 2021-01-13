@@ -10,7 +10,15 @@ function reducer(state, action){
     }
   
     if(action.type === actions.increase){
-      return {...state, count: state.count+1 }
+        let tempCart  = state.cart.map((i) => {
+            if(i.id  === action.payload.id){
+                i = {...i, amount: i.amount +1}
+            }
+            return i
+        })
+
+        console.log(tempCart)
+      return {...state, cart:tempCart }
     }
     if(action.type === actions.clearcart){
         return {...state, cart: [] }
