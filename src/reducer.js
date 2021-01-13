@@ -12,6 +12,12 @@ function reducer(state, action){
     if(action.type === actions.increase){
       return {...state, count: state.count+1 }
     }
+    if(action.type === actions.clearcart){
+        return {...state, cart: [] }
+    }
+    if(action.type === actions.remove){
+        console.log(action.id) 
+    }
   
   
     return state
