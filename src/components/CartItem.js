@@ -33,8 +33,8 @@ const CartItem = ({ img, title, price, amount, remove }) => {
 };
 
 
-const mapDispatchToProps = (dispatch) =>{
-  return {remove: () => dispatch({type: actions.remove, id:1})}
+const mapDispatchToProps = (dispatch, ownProps) =>{
+  return {remove: (title) => dispatch({type: actions.remove, payload: {id:ownProps.id}})}
 }
 
 export default connect(null, mapDispatchToProps)(CartItem);

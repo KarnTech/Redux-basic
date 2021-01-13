@@ -16,7 +16,7 @@ function reducer(state, action){
         return {...state, cart: [] }
     }
     if(action.type === actions.remove){
-        console.log(action.id) 
+        return {...state, cart: state.cart.filter((cartitem)  => cartitem.id !== action.payload.id )}
     }
   
   
